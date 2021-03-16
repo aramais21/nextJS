@@ -19,7 +19,7 @@ const Home = ({data}) => {
 export const getStaticProps = async () => {
     try {
         const data = await fetchPromise(2000, [{name: 'unknown', id: 1},{name: 'unknown', id: 2},{name: 'unknown', id: 3}]);
-        return {data}
+        return { props: {data}}
     }
     catch(err) {
         console.log(err);
