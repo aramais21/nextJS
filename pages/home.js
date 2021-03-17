@@ -1,25 +1,41 @@
 import Link from 'next/link';
+
 import Layout from '../components/Layout';
+import {getSortedPostsData} from '../lib/posts';
 import { fetchPromise } from '../utils/promise';
 
-const Home = ({data}) => {
+import styles from '../styles/home.module.css';
+
+const Home = ({asyncData, staticData}) => {
     return (
         <Layout>
-            <div>
+            <div className={styles.title} >
                 Home
-                <Link href = 'posts/post' > go to posts/post </Link>
+                <Link href = '/posts/post' > go to posts/post </Link>
             </div>
-            {data.map((item) => {
-                return <div> {item.name} {item.id} </div>
-            })}
+            <div className={styles.columnWrapper} >
+                <div className={styles.column} >
+                    <div className = {styles.columnTitle} >Async Data</div>
+                    {asyncData.map((item) => {
+                        return <div key = {item.id} > {item.name} {item.id} </div>
+                    })}
+                </div>
+                <div className={styles.column} >
+                    <div className = {styles.columnTitle} > StaticData </div>
+                    {staticData.map((item) => {
+                        return <div key = {item.id} > {new Date(item.date).toDateString()} {item.title} </div>
+                    })}
+                </div>
+            </div>
         </Layout>
     );
 }
 
 export const getStaticProps = async () => {
     try {
-        const data = await fetchPromise(2000, [{name: 'unknown', id: 1},{name: 'unknown', id: 2},{name: 'unknown', id: 3}]);
-        return { props: {data}}
+        const asyncData = await fetchPromise(2000, [{name: 'unknown', id: 1},{name: 'unknown', id: 2},{name: 'unknown', id: 3}]);
+        const staticData = getSortedPostsData();
+        return { props: {asyncData, staticData}};
     }
     catch(err) {
         console.log(err);

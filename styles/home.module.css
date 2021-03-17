@@ -1,0 +1,25 @@
+.title {
+    width: 100%;
+    font-size: 2rem;
+    text-decoration: none;
+    text-align: center;
+}
+.columnWrapper {
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+}
+.column {
+    width: 50%;
+    min-width: 20rem;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+}
+.columnTitle {
+    width: 100%;
+    text-align: center;
+    color: #252525;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
