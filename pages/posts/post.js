@@ -1,8 +1,10 @@
 import Link from 'next/link';
 import Image from 'next/image'
 import Layout from '../../components/Layout';
+import { getSortedPostsData } from '../../lib/posts';
 
-const Post = () => {
+const Post = ({data}) => {
+    console.log(data);
     return(
         <Layout>
             <h1>
@@ -20,8 +22,30 @@ const Post = () => {
                     alt="logo"
                 />
             </div>
+            <div>
+                {data.map((item) => {
+                    console.log(item);
+                    return (
+                        <div key = {item.id} >
+                            <div>{new Date(item.date).toDateString()}</div>
+                            <div>{item.title}</div>
+                        </div>
+                    );
+                })}
+            </div>
         </Layout>
     )
+}
+
+export const getStaticProps = async () => {
+    const allPropsFromMDFiles = getSortedPostsData();
+    console.log(allPropsFromMDFiles);
+    return {
+        props: {
+            data: [...allPropsFromMDFiles]
+        }
+    }
+
 }
 
 export default Post;
