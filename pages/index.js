@@ -11,7 +11,8 @@ const Home = ({asyncData, staticData}) => {
         <Layout>
             <div className={styles.title} >
                 Home
-                <Link href = '/posts/post' > go to posts/post </Link>
+                <Link href = '/posts/post' > posts/post </Link>
+                <Link href = '/serverSide' > serverSide </Link>
             </div>
             <div className={styles.columnWrapper} >
                 <div className={styles.column} >

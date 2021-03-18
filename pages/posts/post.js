@@ -7,7 +7,7 @@ const Post = () => {
         <Layout>
             <h1>
                 Post
-                <Link href="/home" >go to home</Link>
+                <Link href="/" >go to home</Link>
             </h1>
             <div>
                 <img src="/images/logo.png" alt = 'logo' />
